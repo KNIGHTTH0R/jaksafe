@@ -54,6 +54,17 @@ return [
             'engine' => null,
         ],
 
+        'mongodb' => [
+            'driver' => 'mongodb',
+            'host' => '127.0.0.1',
+            'database' => 'jaksafe',
+            'username' => '',
+            'password' => '',
+            'options' => [
+                'database' => 'admin' // sets the authentication database required by mongo 3
+            ]
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),
