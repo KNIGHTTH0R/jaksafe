@@ -19,7 +19,7 @@ class HotSpotController extends ApiController
         $type = Input::get('type', null);
         $limit = Input::get('limit', 10);
         $sort = Input::get('sort', null);
-        $location = Input::get('location', null);
+        $location = Input::get('location', '-6.1921633,106.7895428');
 //        $criteria = Input::get('criteria', null);
 
         $limit = max(min(50, $limit), 1);
