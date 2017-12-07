@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Domains\Jakgo\Client;
+use App\Presentation\JaksafeSerializer;
 use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
 use Illuminate\Support\ServiceProvider;
+use League\Fractal\Manager;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -38,6 +40,13 @@ class AppServiceProvider extends ServiceProvider
                 ]
             );
             return new Client($httpClient);
+        });
+
+        $this->app->singleton('League\Fractal\Manager', function () {
+            $manager = new Manager();
+            $manager->setSerializer(new JaksafeSerializer());
+
+            return $manager;
         });
     }
 }
