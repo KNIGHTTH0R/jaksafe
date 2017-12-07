@@ -8,6 +8,7 @@ import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 
 import request from 'utils/request';
 import { makeSelectUsername } from 'containers/HomePage/selectors';
+import {LOAD_HOTSPOTS} from "./constants";
 
 /**
  * Github repos request/response handler
@@ -26,6 +27,19 @@ export function* getRepos() {
   }
 }
 
+export function* getHotSpots() {
+    const location= '-34.397,150.644`;';
+    const requestURL = `https://jaksafe.tono.io/api/hotspots?location=${location}`;
+
+    try {
+        // Call our request helper (see 'utils/request')
+        const repos = yield call(request, requestURL);
+        yield put(reposLoaded(repos, username));
+    } catch (err) {
+        yield put(repoLoadingError(err));
+    }
+}
+
 /**
  * Root saga manages watcher lifecycle
  */
@@ -35,4 +49,5 @@ export default function* githubData() {
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
   yield takeLatest(LOAD_REPOS, getRepos);
+  yield takeLatest(LOAD_HOTSPOTS, getHotSpots);
 }

@@ -12,7 +12,7 @@
 import { fromJS } from 'immutable';
 
 import {
-  CHANGE_USERNAME,
+    CHANGE_USERNAME, LOAD_HOTSPOTS, LOAD_HOTSPOTS_SUCCESS,
 } from './constants';
 
 // The initial state of the App
@@ -22,6 +22,13 @@ const initialState = fromJS({
 
 function homeReducer(state = initialState, action) {
   switch (action.type) {
+      case LOAD_HOTSPOTS:
+          return state
+              .set('loading', true);
+      case LOAD_HOTSPOTS_SUCCESS:
+        return state
+            .set('hotspots', action.payload)
+            .set('loading', false);
     case CHANGE_USERNAME:
 
       // Delete prefixed '@' from the github username

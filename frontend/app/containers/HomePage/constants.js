@@ -10,3 +10,7 @@
  */
 
 export const CHANGE_USERNAME = 'boilerplate/Home/CHANGE_USERNAME';
+
+export const LOAD_HOTSPOTS = 'LOAD_HOTSPOTS';
+export const LOAD_HOTSPOTS_SUCCESS = 'LOAD_HOTSPOTS_SUCCESS';
+export const LOAD_HOTSPOTS_ERROR = 'LOAD_HOTSPOTS_ERROR';

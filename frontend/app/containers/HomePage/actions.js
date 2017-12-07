@@ -16,7 +16,7 @@
  */
 
 import {
-  CHANGE_USERNAME,
+    CHANGE_USERNAME, LOAD_HOTSPOTS, LOAD_HOTSPOTS_SUCCESS,
 } from './constants';
 
 /**
@@ -27,8 +27,29 @@ import {
  * @return {object}    An action object with a type of CHANGE_USERNAME
  */
 export function changeUsername(name) {
-  return {
-    type: CHANGE_USERNAME,
-    name,
-  };
+    return {
+        type: CHANGE_USERNAME,
+        name,
+    };
+}
+
+export function loadHotSpots(location) {
+    return {
+        type: LOAD_HOTSPOTS,
+        payload: location,
+    };
+}
+
+export function loadHotSpotsSuccess(hotspots) {
+    return {
+        type: LOAD_HOTSPOTS_SUCCESS,
+        payload: hotspots,
+    };
+}
+
+export function loadHotSpotsError(error) {
+    return {
+        type: LOAD_HOTSPOTS_SUCCESS,
+        payload: error,
+    };
 }
