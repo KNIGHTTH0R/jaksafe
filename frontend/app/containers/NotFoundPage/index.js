@@ -17,7 +17,7 @@ export default function NotFound() {
       <Header/>
       <article>
         <H1>
-          Page not Found
+          Page Under Development
         </H1>
       </article>
     </div>

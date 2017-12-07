@@ -6,6 +6,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import ToolbarButton from './ToolbarButton';
 
 const ToolbarWrapper = styled.div`
+  max-width: calc(768px + 16px * 2);
   background-color: #DCDCDC;
   margin: 0 auto;
   display: flex;
