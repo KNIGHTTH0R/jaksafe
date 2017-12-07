@@ -21,8 +21,6 @@ import LoginPage from 'containers/LoginPage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import AuthRoute from 'containers/AuthRoute';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
 import {makeSelectCurrentUser, makeSelectIsAuthenticated, makeSelectIsInitialized} from "./selectors";
 import {init} from "./actions";
 
@@ -31,10 +29,11 @@ import AppInitializer from "./AppInitiallizer";
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
+  font-family: 'Asap', sans-serif;
   margin: 0 auto;
   display: flex;
   min-height: 100%;
-  padding: 0 16px;
+  padding: 0;
   flex-direction: column;
 `;
 
@@ -46,24 +45,23 @@ class App extends Component {
         return (
             <AppWrapper>
                 <Helmet
-                    titleTemplate="%s - React.js Boilerplate"
-                    defaultTitle="React.js Boilerplate"
+                    titleTemplate="%s - JAKSafe"
+                    defaultTitle="JAKSafe"
                 >
-                    <meta name="description" content="A React.js Boilerplate application"/>
+                    <meta name="description" content="JAKSafe - Untuk Jakarta yang Lebih Aman"/>
+                    <link href="https://fonts.googleapis.com/css?family=Asap:400,500,600,700" rel="stylesheet"/>
                 </Helmet>
-                <Header/>
                 <AppInitializer
                     isInitialized={this.props.isInitialized}
                     initialize={this.props.initialize}
                 >
                     <Switch>
-                        <AuthRoute isAuthenticated={isAuthenticated} exact path="/" component={HomePage}/>
+                        <Route exact path="/" component={HomePage}/>
                         <Route exact path="/account/login" component={LoginPage}/>
                         <Route path="/features" component={FeaturePage}/>
                         <Route path="" component={NotFoundPage}/>
                     </Switch>
                 </AppInitializer>
-                <Footer/>
             </AppWrapper>
         );
     }
@@ -90,4 +88,3 @@ export default compose(
     withSaga,
     withConnect,
 )(App);
-
