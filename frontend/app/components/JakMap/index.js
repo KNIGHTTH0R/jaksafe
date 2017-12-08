@@ -19,7 +19,7 @@ class JakMap extends Component {
 
         return (
             <GoogleMap
-                defaultZoom={14}
+                defaultZoom={11}
                 defaultCenter={{lat: this.props.lat, lng: this.props.lon}}
                 defaultOptions={{styles: JAKSafeMapStyle}}
             >
