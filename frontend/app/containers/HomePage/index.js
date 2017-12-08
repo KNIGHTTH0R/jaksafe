@@ -32,15 +32,14 @@ import {makeSelectUsername, makeSelectHotSpots} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import JakMap from "components/JakMap";
+import Geolocation from "react-geolocation";
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
-    /**
-     * when initial state username is not null, submit the form to load repos
-     */
-    componentDidMount() {
-        if (!this.props.hotspots || this.props.hotspots.length <= 0) {
-            this.props.loadHotSpots();
-        }
+
+    onLocationRetrieved = (position) => {
+        console.log('location retrieved');
+        console.log(position);
+        this.props.loadHotSpots(position);
     }
 
     render() {
@@ -57,6 +56,26 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                         <CenteredSection>
                             <JakMap lat={-6.1921633} lon={106.7895428}/>
                         </CenteredSection>
+                        <Geolocation
+                            onSuccess={this.onLocationRetrieved}
+                            render={({
+                                         fetchingPosition,
+                                         position: {coords: {latitude, longitude} = {}} = {},
+                                         error,
+                                         getCurrentPosition
+                                     }) =>
+                                <div>
+                                    <button onClick={getCurrentPosition}>Get Position</button>
+                                    {error &&
+                                    <div>
+                                        {error.message}
+                                    </div>}
+                                    <pre>
+                                        latitude: {latitude}
+                                        longitude: {longitude}
+                                    </pre>
+                                </div>}
+                        />
                     </div>
                 </article>
                 <ToolbarBottom/>
@@ -87,8 +106,8 @@ function mapDispatchToProps(dispatch) {
             if (evt !== undefined && evt.preventDefault) evt.preventDefault();
             dispatch(loadRepos());
         },
-        loadHotSpots: (evt) => {
-            dispatch(loadHotSpots());
+        loadHotSpots: (position) => {
+            dispatch(loadHotSpots(position));
         }
     };
 }

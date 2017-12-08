@@ -9,6 +9,7 @@ import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 import request from 'utils/request';
 import { makeSelectUsername } from 'containers/HomePage/selectors';
 import {LOAD_HOTSPOTS} from "./constants";
+import {loadHotSpotsError, loadHotSpotsSuccess} from "./actions";
 
 /**
  * Github repos request/response handler
@@ -27,16 +28,16 @@ export function* getRepos() {
   }
 }
 
-export function* getHotSpots() {
-    const location= '-34.397,150.644';
+export function* getHotSpots(action) {
+    const location= action.payload.coords.latitude+','+action.payload.coords.longitude;
     const requestURL = 'https://jaksafe.tono.io/api/hotspots?location='+location;
 
     try {
         // Call our request helper (see 'utils/request')
-        const repos = yield call(request, requestURL);
-        yield put(reposLoaded(repos, username));
+        const hotspots = yield call(request, requestURL);
+        yield put(loadHotSpotsSuccess(hotspots.data));
     } catch (err) {
-        yield put(repoLoadingError(err));
+        yield put(loadHotSpotsError(err));
     }
 }
 

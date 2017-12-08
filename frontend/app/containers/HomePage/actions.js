@@ -33,10 +33,10 @@ export function changeUsername(name) {
     };
 }
 
-export function loadHotSpots(location) {
+export function loadHotSpots(position) {
     return {
         type: LOAD_HOTSPOTS,
-        payload: location,
+        payload: position,
     };
 }
 
@@ -50,6 +50,26 @@ export function loadHotSpotsSuccess(hotspots) {
 export function loadHotSpotsError(error) {
     return {
         type: LOAD_HOTSPOTS_SUCCESS,
+        payload: error,
+    };
+}
+
+export function loadLocation() {
+    return {
+        type: LOAD_LOCATION,
+    };
+}
+
+export function loadLocationSuccess(position) {
+    return {
+        type: LOAD_LOCATION_SUCCESS,
+        payload: position,
+    };
+}
+
+export function loadLocationError(error) {
+    return {
+        type: LOAD_LOCATiON_SUCCESS,
         payload: error,
     };
 }
