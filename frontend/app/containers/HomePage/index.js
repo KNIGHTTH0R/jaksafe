@@ -26,9 +26,9 @@ import Input from './Input';
 import Section from './Section';
 import messages from './messages';
 import {loadRepos} from '../App/actions';
-import {loadHotSpots} from './actions';
+import {loadHotSpots, loadLocationSuccess} from './actions';
 import {changeUsername} from './actions';
-import {makeSelectUsername, makeSelectHotSpots} from './selectors';
+import {makeSelectUsername, makeSelectHotSpots, makeSelectLat, makeSelectLon} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import JakMap from "components/JakMap";
@@ -40,6 +40,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
         console.log('location retrieved');
         console.log(position);
         this.props.loadHotSpots(position);
+        this.props.loadLocationSuccess(position);
     }
 
     onCenterChanged = (position) => {
@@ -60,7 +61,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                     </Helmet>
                     <div>
                         <CenteredSection>
-                            <JakMap markers={this.props.hotspots} lat={-6.1921633} lon={106.7895428}/>
+                            <JakMap markers={this.props.hotspots} lat={this.props.lat || -6.1921633} lon={this.props.lon || 106.7895428}/>
                         </CenteredSection>
                         <Geolocation
                             onSuccess={this.onLocationRetrieved}
@@ -105,6 +106,9 @@ function mapDispatchToProps(dispatch) {
         },
         loadHotSpots: (position) => {
             dispatch(loadHotSpots(position));
+        },
+        loadLocationSuccess: (position) => {
+            dispatch(loadLocationSuccess(position));
         }
     };
 }
@@ -114,7 +118,9 @@ const mapStateToProps = createStructuredSelector({
     username: makeSelectUsername(),
     loading: makeSelectLoading(),
     error: makeSelectError(),
-    hotspots: makeSelectHotSpots()
+    hotspots: makeSelectHotSpots(),
+    lat : makeSelectLat(),
+    lon : makeSelectLon(),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
