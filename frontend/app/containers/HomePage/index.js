@@ -64,17 +64,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                                          error,
                                          getCurrentPosition
                                      }) =>
-                                <div>
-                                    <button onClick={getCurrentPosition}>Get Position</button>
-                                    {error &&
-                                    <div>
-                                        {error.message}
-                                    </div>}
-                                    <pre>
-                                        latitude: {latitude}
-                                        longitude: {longitude}
-                                    </pre>
-                                </div>}
+                                null}
                         />
                     </div>
                 </article>
