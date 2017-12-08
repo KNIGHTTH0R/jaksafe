@@ -10,8 +10,11 @@ class JakMap extends Component {
         let props = this.props;
         let markers = props.markers && props.markers.length > 0 && props.markers.map(
             (marker, i) => {
-                return <Marker key={1}
-                        position={{lat: marker.coords.position.latitude, lng: marker.coords.position.longitude}}/>;
+                return <Marker key={i}
+                               position={{
+                                   lat: marker.lat,
+                                   lng: marker.lon
+                               }}/>;
             });
 
         return (
