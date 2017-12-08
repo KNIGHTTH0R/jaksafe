@@ -3,6 +3,11 @@ import {compose, withProps} from "recompose"
 import {withScriptjs, withGoogleMap, GoogleMap, Marker} from "react-google-maps"
 
 const JAKSafeMapStyle = require("./JAKSafeMapStyle.json");
+const pinBanjir = require("./pin-banjir.png");
+const pinHydrant = require("./pin-hydrant.png");
+const pinTawuran = require("./pin-tawuran.png");
+const pinPintuAir = require("./pin-pintuair.png");
+const pinRumahPompa = require("./pin-masjid.png");
 
 class JakMap extends Component {
 
@@ -10,11 +15,31 @@ class JakMap extends Component {
         let props = this.props;
         let markers = props.markers && props.markers.length > 0 && props.markers.map(
             (marker, i) => {
+              let iconType;
+              if (marker.type === 'hydrant'){
+                iconType = pinHydrant;
+              }
+              else if(marker.type === 'rawan-bencana'){
+                iconType = pinBanjir;
+              }
+              else if(marker.type === 'tawuran'){
+                iconType = pinTawuran;
+              }
+              else if(marker.type === 'pintu-air'){
+                iconType = pinPintuAir;
+              }
+              else{
+                iconType = pinRumahPompa;
+              }
+
                 return <Marker key={i}
                                position={{
                                    lat: marker.lat,
                                    lng: marker.lon
-                               }}/>;
+                               }} icon={{
+                                 url: iconType,
+                                 scaledSize: new google.maps.Size(50, 50)
+                               }} />;
             });
 
         return (
