@@ -31,7 +31,7 @@ class HotSpotController extends ApiController
             $lat = $location[0];
             $lon = $location[1];
             $minDistance = (int)Input::get('min_distance', 1);
-            $maxDistance = (int)Input::get('max_distance', 1000);
+            $maxDistance = (int)Input::get('max_distance', 2500);
             $hotspots = HotSpot::where('geometry', 'near', [
                 '$geometry' => [
                     'type' => 'Point',
