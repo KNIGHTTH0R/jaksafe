@@ -29,6 +29,8 @@ export function* getRepos() {
 }
 
 export function* getHotSpots(action) {
+    console.log('saga get hot spots');
+    console.log(action);
     const location= action.payload.coords.latitude+','+action.payload.coords.longitude;
     const requestURL = 'https://jaksafe.tono.io/api/hotspots?location='+location;
 
