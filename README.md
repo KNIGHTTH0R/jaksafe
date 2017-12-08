@@ -4,6 +4,10 @@
 
 https://jaksafe.tono.io
 
+### Google Slides
+
+https://docs.google.com/presentation/d/1PCEVQ1kM7bJonw5oLIGhYieJv7XhwP0DqPHh5fIQFA8/edit?usp=sharing
+
 
 
 ### Main Features
