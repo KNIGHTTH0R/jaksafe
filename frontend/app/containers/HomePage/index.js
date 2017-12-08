@@ -54,7 +54,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                     </Helmet>
                     <div>
                         <CenteredSection>
-                            <JakMap lat={-6.1921633} lon={106.7895428}/>
+                            <JakMap markers={this.props.hotspots} lat={-6.1921633} lon={106.7895428}/>
                         </CenteredSection>
                         <Geolocation
                             onSuccess={this.onLocationRetrieved}
