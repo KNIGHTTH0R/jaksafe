@@ -49,12 +49,12 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                 <Header/>
                 <article>
                     <Helmet>
-                        <title>Home Page</title>
-                        <meta name="description" content="A React.js Boilerplate application homepage"/>
+                        <title>Jaksafe</title>
+                        <meta name="description" content="Jakarta Aman"/>
                     </Helmet>
                     <div>
                         <CenteredSection>
-                            <JakMap lat={-34.397} lon={150.644}/>
+                            <JakMap lat={-6.1921633} lon={106.7895428}/>
                         </CenteredSection>
                     </div>
                 </article>
