@@ -42,6 +42,12 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
         this.props.loadHotSpots(position);
     }
 
+    onCenterChanged = (position) => {
+        console.log('location changed');
+        console.log(position);
+        this.props.loadHotSpots(position);
+    }
+
     render() {
 
         return (
@@ -58,6 +64,7 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                         </CenteredSection>
                         <Geolocation
                             onSuccess={this.onLocationRetrieved}
+                            onCenterChanged={this.onCenterChanged}
                             render={({
                                          fetchingPosition,
                                          position: {coords: {latitude, longitude} = {}} = {},
